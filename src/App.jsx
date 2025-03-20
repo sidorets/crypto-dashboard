@@ -22,15 +22,10 @@ function formatMarketCap(number) {
 function App() {
 
   useEffect(() => {
-    if (window.Telegram?.WebApp) {
+    if (window.Telegram) {
       const tg = window.Telegram.WebApp;
-      tg.expand(); // Разворачивает Mini-App на весь экран
-      tg.setHeaderColor("bg_color"); // Автоматический цвет хедера
-      tg.setBackgroundColor("#000000"); // Фон мини-аппа (чёрный)
-
-      console.log("Telegram WebApp Initialized:", tg);
-    } else {
-      console.warn("Telegram WebApp API не найден!");
+      tg.expand(); // Растягивает Web App на весь экран
+      tg.enableClosingConfirmation(); // Спрашивает подтверждение перед выходом
     }
   }, []);
   
