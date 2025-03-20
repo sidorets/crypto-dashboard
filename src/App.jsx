@@ -24,19 +24,22 @@ function App() {
   useEffect(() => {
     if (window.Telegram && window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
-      tg.expand();
-      tg.ready();
-
-      // Устанавливаем безопасный отступ сверху
-    document.documentElement.style.setProperty(
-      "--tg-top-padding",
-      `${tg.viewportStableHeight ? tg.viewportStableHeight * 0.05 : 24}px`
-      );
+      tg.expand();  // Разворачиваем WebApp на всю высоту
+      tg.ready();   // Подтверждаем готовность WebApp
+      tg.enableClosingConfirmation(); // Запрещаем случайное закрытие
+  
+      // Устанавливаем безопасный отступ сверху (если Telegram его поддерживает)
+      if (tg.viewportStableHeight) {
+        document.documentElement.style.setProperty(
+          "--tg-top-padding",
+          `${tg.viewportStableHeight * 0.05}px`
+        );
+      }
     }
-    
-    // Фикс для предотвращения свайпа вниз
+  
+    // Отключаем свайп вниз для закрытия
     const preventSwipeDown = (event) => {
-      if (event.touches.length === 1 && event.touches[0].clientY < 100) {
+      if (event.touches.length === 1 && event.touches[0].clientY < 50) {
         event.preventDefault();
       }
     };
