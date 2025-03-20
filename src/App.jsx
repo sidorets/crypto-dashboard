@@ -27,8 +27,22 @@ function App() {
       tg.expand();
       tg.ready();
       tg.requestFullscreen(); // Запрос полноэкранного режима
-    }
-  }, []);
+      
+    // Запрет свайпа вниз для закрытия
+    const preventSwipeDown = (event) => {
+      if (event.touches.length === 1 && event.touches[0].clientY < 50) {
+        event.preventDefault();
+      }
+    };
+
+    document.addEventListener("touchmove", preventSwipeDown, { passive: false });
+
+    return () => {
+      document.removeEventListener("touchmove", preventSwipeDown);
+    };
+  }
+}, []);
+
   
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(true);
