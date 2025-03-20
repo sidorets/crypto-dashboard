@@ -26,14 +26,13 @@ function App() {
       const tg = window.Telegram.WebApp;
       tg.expand();
       tg.ready();
-      tg.requestFullscreen(); // Запрос на полноэкранный режим
-    }
-  
-    // Устанавливаем динамический отступ сверху
+
+      // Устанавливаем безопасный отступ сверху
     document.documentElement.style.setProperty(
       "--tg-top-padding",
       `${tg.viewportStableHeight ? tg.viewportStableHeight * 0.05 : 24}px`
-    );
+      );
+    }
     
     // Фикс для предотвращения свайпа вниз
     const preventSwipeDown = (event) => {
