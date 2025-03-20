@@ -22,10 +22,11 @@ function formatMarketCap(number) {
 function App() {
 
   useEffect(() => {
-    if (window.Telegram) {
+    if (window.Telegram && window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
-      tg.expand(); // Растягивает Web App на весь экран
-      tg.enableClosingConfirmation(); // Спрашивает подтверждение перед выходом
+      tg.expand();
+      tg.ready();
+      tg.requestFullscreen(); // Запрос полноэкранного режима
     }
   }, []);
   
