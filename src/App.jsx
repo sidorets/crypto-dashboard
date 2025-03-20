@@ -29,6 +29,12 @@ function App() {
       tg.requestFullscreen(); // Запрос на полноэкранный режим
     }
   
+    // Устанавливаем динамический отступ сверху
+    document.documentElement.style.setProperty(
+      "--tg-top-padding",
+      `${tg.viewportStableHeight ? tg.viewportStableHeight * 0.05 : 24}px`
+    );
+    
     // Фикс для предотвращения свайпа вниз
     const preventSwipeDown = (event) => {
       if (event.touches.length === 1 && event.touches[0].clientY < 100) {
