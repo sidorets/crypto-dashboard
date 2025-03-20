@@ -24,9 +24,13 @@ function App() {
   useEffect(() => {
     if (window.Telegram?.WebApp) {
       const tg = window.Telegram.WebApp;
-      tg.expand(); // Разворачивает мини-апп на весь экран
-      tg.setHeaderColor("bg_color"); // Автоцвет фона
-      tg.setBackgroundColor("#000000"); // Черный фон
+      tg.expand(); // Разворачивает Mini-App на весь экран
+      tg.setHeaderColor("bg_color"); // Автоматический цвет хедера
+      tg.setBackgroundColor("#000000"); // Фон мини-аппа (чёрный)
+
+      console.log("Telegram WebApp Initialized:", tg);
+    } else {
+      console.warn("Telegram WebApp API не найден!");
     }
   }, []);
   
