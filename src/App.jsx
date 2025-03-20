@@ -26,22 +26,22 @@ function App() {
       const tg = window.Telegram.WebApp;
       tg.expand();
       tg.ready();
-      tg.requestFullscreen(); // Запрос полноэкранного режима
-      
-    // Запрет свайпа вниз для закрытия
+      tg.requestFullscreen(); // Запрос на полноэкранный режим
+    }
+  
+    // Фикс для предотвращения свайпа вниз
     const preventSwipeDown = (event) => {
-      if (event.touches.length === 1 && event.touches[0].clientY < 50) {
+      if (event.touches.length === 1 && event.touches[0].clientY < 100) {
         event.preventDefault();
       }
     };
-
+  
     document.addEventListener("touchmove", preventSwipeDown, { passive: false });
-
+  
     return () => {
       document.removeEventListener("touchmove", preventSwipeDown);
     };
-  }
-}, []);
+  }, []);
 
   
   const [coins, setCoins] = useState([]);
