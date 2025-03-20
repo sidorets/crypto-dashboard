@@ -20,6 +20,16 @@ function formatMarketCap(number) {
 }
 
 function App() {
+
+  useEffect(() => {
+    if (window.Telegram?.WebApp) {
+      const tg = window.Telegram.WebApp;
+      tg.expand(); // Разворачивает мини-апп на весь экран
+      tg.setHeaderColor("bg_color"); // Автоцвет фона
+      tg.setBackgroundColor("#000000"); // Черный фон
+    }
+  }, []);
+  
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(true);
 
