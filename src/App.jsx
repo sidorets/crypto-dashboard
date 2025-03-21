@@ -30,6 +30,7 @@ function App() {
       tg.expand();
       tg.ready();
       tg.requestFullscreen();
+      tg.safeAreaInset();
     }
   }, []);
 
