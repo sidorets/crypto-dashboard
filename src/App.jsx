@@ -31,7 +31,22 @@ function App() {
       tg.ready();
       tg.requestFullscreen();
       tg.disableVerticalSwipes();
+
+      // Safe Area Changed Event
+      tg.onEvent("content_safe_area_changed", (safeArea) => {
+        document.documentElement.style.setProperty("--tg-content-safe-area-inset-top", `${safeArea.top}px`);
+        document.documentElement.style.setProperty("--tg-content-safe-area-inset-bottom", `${safeArea.bottom}px`);
+        document.documentElement.style.setProperty("--tg-content-safe-area-inset-left", `${safeArea.left}px`);
+        document.documentElement.style.setProperty("--tg-content-safe-area-inset-right", `${safeArea.right}px`);
+      });
     }
+
+    return () => {
+      if (window.Telegram && window.Telegram.WebApp) {
+        window.Telegram.WebApp.offEvent("content_safe_area_changed");
+      }
+    };
+    
   }, []);
 
   // Coingecko API
