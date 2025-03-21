@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Card from "./components/Card";
-import requestFullscreen() from "@telegram-apps/sdk";
+import { requestFullscreen } from "@telegram-apps/sdk";
 
 // Currency list
 const allowedCoins = [
@@ -29,7 +29,7 @@ function App() {
       const tg = window.Telegram.WebApp;
       tg.expand();
       tg.ready();
-      tg.requestFullscreen();
+      
       tg.disableVerticalSwipes();
     }
   }, []);
