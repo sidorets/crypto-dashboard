@@ -80,17 +80,17 @@ function App() {
 
   // App
   return (
-    <div className="bg-black min-h-screen flex flex-col items-center justify-center gap-[32px] p-[16px] pt-[64px] pb-[24px]"
+    <div className="bg-black min-h-screen flex flex-col items-center justify-center gap-[16px] p-[16px] pt-[64px] pb-[24px]"
         style={{
           paddingTop: `${safeArea.top}px`, // ✅ Теперь обновляется напрямую
           paddingBottom: `${safeArea.bottom}px`,
           paddingLeft: `${safeArea.left}px`,
           paddingRight: `${safeArea.right}px`
         }}>
-      <div className="w-[140px] h-[140px]"> {/* Контейнер для размера */}
+      <div className="w-[120px] h-[120px]"> {/* Контейнер для размера */}
         <Lottie animationData={bitcoinAnimation} loop={true} />
       </div>
-      <h1 className="text-4xl text-center text-white font-bold">
+      <h1 className="text-4xl text-center text-white font-bold pb-[12px]">
         Crypto Dashboard
       </h1>
 
