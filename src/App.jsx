@@ -19,6 +19,20 @@ function formatMarketCap(number) {
   return `$${number.toLocaleString()}`;
 }
 
+ // Fullscreen method
+ const enterFullScreen = () => {
+  const elem = document.documentElement; // Get root element
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { // Firefox
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { // Chrome, Safari
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { // IE/Edge
+    elem.msRequestFullscreen();
+  }
+};
+
 function App() {
 
   useEffect(() => {
