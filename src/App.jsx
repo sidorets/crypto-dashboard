@@ -30,7 +30,7 @@ function App() {
       tg.expand();
       tg.ready();
       tg.requestFullscreen();
-      tg.enableVerticalSwipes();
+      tg.disableVerticalSwipes();
     }
   }, []);
 
