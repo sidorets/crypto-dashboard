@@ -30,37 +30,32 @@ function App() {
       tg.expand();
       tg.ready();
       tg.disableVerticalSwipes();
-
-      // ✅ Проверяем, открыт ли WebApp в Telegram
+      
+      // Check if Telegram is Open
       const isTelegram = tg.initDataUnsafe?.query_id !== undefined;
 
       if (isTelegram) {
-        console.log("Running inside Telegram WebApp");
-        tg.requestFullscreen(); // ✅ Только в Telegram
+      console.log("Running inside Telegram WebApp");
+      tg.requestFullscreen(); // Only isinde Telegram
       } else {
-        console.log("Running in a regular browser. Fullscreen is disabled.");
+      console.log("Running in a regular browser. Fullscreen is disabled.");
       }
 
-      // ✅ Принудительно запрашиваем `safe area`
-      setTimeout(() => {
-        const safeTop = tg.viewportHeight * 0.05; // 5% от общей высоты экрана
-        console.log("Setting safe area manually:", safeTop);
+      // Top Padding
+      if (tg.viewportStableHeight) {
+        console.log("Using viewportStableHeight:", tg.viewportStableHeight);
         setSafeArea((prev) => ({
           ...prev,
-          top: safeTop
+          top: tg.viewportStableHeight * 0.3 // 30% от высоты
         }));
-      }, 500); // Небольшая задержка для Telegram WebView
+      }
 
-      // ✅ Подписка на `content_safe_area_changed`
-      tg.onEvent("content_safe_area_changed", (safeAreaData) => {
-        console.log("Safe Area Changed:", safeAreaData);
-        setSafeArea(safeAreaData);
-      });
-
-      return () => {
-        tg.offEvent("content_safe_area_changed");
-      };
-    }
+    return () => {
+      if (window.Telegram && window.Telegram.WebApp) {
+        window.Telegram.WebApp.offEvent("content_safe_area_changed");
+      }
+    };
+  }
   }, []);
 
   // Coingecko API
