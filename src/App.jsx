@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Card from "./components/Card";
+import { requestFullscreen } from "@telegram-apps/sdk";
 
 const allowedCoins = [
   "bitcoin", "toncoin", "polkadot", "cardano", "cat-in-a-dogs-world",
@@ -24,31 +25,18 @@ function App() {
   useEffect(() => {
     if (window.Telegram && window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
-      tg.expand();  // Разворачиваем WebApp на всю высоту
-      tg.ready();   // Подтверждаем готовность WebApp
-      tg.enableClosingConfirmation(); // Запрещаем случайное закрытие
-      tg.requestFullscreen(); // Запрос полноэкранного режима
-
-      // Устанавливаем динамический отступ сверху
-      document.documentElement.style.setProperty(
-      "--tg-top-padding",
-      `${tg.viewportStableHeight ? tg.viewportStableHeight * 0.05 : 24}px`
-    );
+      tg.expand();
+      tg.ready();
     }
-  
-    // Отключаем свайп вниз для закрытия
-    const preventSwipeDown = (event) => {
-      if (event.touches.length === 1 && event.touches[0].clientY < 50) {
-        event.preventDefault();
-      }
-    };
-  
-    document.addEventListener("touchmove", preventSwipeDown, { passive: false });
-  
-    return () => {
-      document.removeEventListener("touchmove", preventSwipeDown);
-    };
   }, []);
+
+  const enableFullScreen = async () => {
+    if (requestFullscreen.isAvailable()) {
+      await requestFullscreen();
+    } else {
+      alert("Fullscreen не поддерживается в этом WebApp.");
+    }
+  };
 
   // Coingecko API
   const [coins, setCoins] = useState([]);
