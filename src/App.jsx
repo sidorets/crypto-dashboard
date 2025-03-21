@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Card from "./components/Card";
-import { requestFullscreen } from "@telegram-apps/sdk";
 
 // Currency list
 const allowedCoins = [
@@ -21,7 +20,6 @@ function formatMarketCap(number) {
   return `$${number.toLocaleString()}`;
 }
 
-// Telegram Mini Apps SDK
 function App() {
   const [safeArea, setSafeArea] = useState({ top: 0, bottom: 16, left: 16, right: 16 });
 
@@ -31,33 +29,40 @@ function App() {
       tg.expand();
       tg.ready();
       tg.disableVerticalSwipes();
-      
+
       // ✅ Определяем, открыт ли WebApp в Telegram
       const isTelegram = tg.initDataUnsafe?.query_id !== undefined;
 
       if (isTelegram) {
-      console.log("Running inside Telegram WebApp");
-      tg.requestFullscreen(); // ✅ Только внутри Telegram
+        console.log("Running inside Telegram WebApp");
+        tg.requestFullscreen(); // ✅ Только в Telegram
       } else {
-      console.log("Running in a regular browser. Fullscreen is disabled.");
+        console.log("Running in a regular browser. Fullscreen is disabled.");
       }
 
-      // Top Padding
+      // ✅ Подписка на `content_safe_area_changed` для динамического обновления top padding
+      tg.onEvent("content_safe_area_changed", (safeAreaData) => {
+        console.log("Safe Area Changed:", safeAreaData);
+        setSafeArea(safeAreaData);
+      });
+
+      // ✅ Если `content_safe_area_changed` не сработал, используем `viewportStableHeight`
       if (tg.viewportStableHeight) {
-        console.log("Using viewportStableHeight:", tg.viewportStableHeight);
+        console.log("Using viewportStableHeight as fallback:", tg.viewportStableHeight);
         setSafeArea((prev) => ({
           ...prev,
-          top: tg.viewportStableHeight * 0.3 // 30% от высоты
+          top: tg.viewportStableHeight * 0.05 // 5% от высоты как резервное значение
         }));
       }
-
-    return () => {
-      if (window.Telegram && window.Telegram.WebApp) {
-        window.Telegram.WebApp.offEvent("content_safe_area_changed");
-      }
-    };
-  }
+      
+      return () => {
+        if (window.Telegram && window.Telegram.WebApp) {
+          window.Telegram.WebApp.offEvent("content_safe_area_changed");
+        }
+      };
+    }
   }, []);
+
 
   // Coingecko API
   const [coins, setCoins] = useState([]);
