@@ -42,21 +42,6 @@ function App() {
       } else {
       console.log("Running in a regular browser. Fullscreen is disabled.");
       }
-
-      // Top Padding
-      if (tg.viewportStableHeight) {
-        console.log("Using viewportStableHeight:", tg.viewportStableHeight);
-        setSafeArea((prev) => ({
-          ...prev,
-          top: tg.viewportStableHeight * 0.3 // 30% от высоты
-        }));
-      }
-
-    return () => {
-      if (window.Telegram && window.Telegram.WebApp) {
-        window.Telegram.WebApp.offEvent("content_safe_area_changed");
-      }
-    };
   }
   }, []);
 
@@ -80,13 +65,7 @@ function App() {
 
   // App
   return (
-    <div className="bg-black min-h-screen flex flex-col items-center justify-center gap-[16px] p-[16px] pt-[64px] pb-[24px]"
-        style={{
-          paddingTop: `${safeArea.top}px`,
-          paddingBottom: `${safeArea.bottom}px`,
-          paddingLeft: `${safeArea.left}px`,
-          paddingRight: `${safeArea.right}px`
-        }}>
+    <div className="bg-black min-h-screen flex flex-col items-center justify-center gap-[16px] p-[16px] pt-[64px] pb-[24px]">
       <div className="w-[120px] h-[120px]">
         <Lottie animationData={bitcoinAnimation} loop={true} />
       </div>
