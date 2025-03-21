@@ -24,23 +24,12 @@ function formatMarketCap(number) {
 
 // Telegram Mini Apps SDK
 function App() {
-  const safeAreaRef = useRef(null);
-
   useEffect(() => {
     if (window.Telegram && window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
       tg.expand();
       tg.ready();
       tg.disableVerticalSwipes();
-
-      // Создаём элемент tg-content-safe-area вручную
-    const safeArea = document.createElement("tg-content-safe-area");
-  safeArea.className = "safe-area-container";
-  
-  if (!document.querySelector("tg-content-safe-area")) {
-    document.body.appendChild(safeArea);
-  }
-
       
       // Check if Telegram is Open
       const isTelegram = tg.initDataUnsafe?.query_id !== undefined;
@@ -74,8 +63,8 @@ function App() {
 
   // App
   return (
-    <div ref={safeAreaRef}>
-    <div className="bg-black min-h-screen flex flex-col items-center justify-center gap-[10px] pl-[16px] pr-[16px] pt-[16px] pb-[24px]">
+    <tg-content-safe-area>
+    <div className="safe-area-container bg-black min-h-screen flex flex-col items-center justify-center gap-[10px] pl-[16px] pr-[16px] pt-[80px] pb-[24px]">
       <div className="w-[120px] h-[120px]">
         <Lottie animationData={bitcoinAnimation} loop={true} />
       </div>
@@ -98,7 +87,7 @@ function App() {
         </div>
       )}
     </div>
-    </div>
+    </tg-content-safe-area>
   );
 }
 
