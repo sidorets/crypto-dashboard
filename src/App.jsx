@@ -63,14 +63,8 @@ function App() {
 
   // App
   return (
-    <div className="safe-area-container bg-black min-h-screen flex flex-col items-center justify-center"
-    style={{
-      paddingTop: 'var(--tg-safe-area-inset-top)',
-      paddingBottom: 'var(--tg-safe-area-inset-bottom)',
-      paddingLeft: 'var(--tg-safe-area-inset-left)',
-      paddingRight: 'var(--tg-safe-area-inset-right)',
-    }}
-    >
+    <tg-content-safe-area>
+    <div className="safe-area-container bg-black min-h-screen flex flex-col items-center justify-center gap-[10px] pl-[16px] pr-[16px] pt-[80px] pb-[24px]">
       <div className="w-[120px] h-[120px]">
         <Lottie animationData={bitcoinAnimation} loop={true} />
       </div>
@@ -93,6 +87,7 @@ function App() {
         </div>
       )}
     </div>
+    </tg-content-safe-area>
   );
 }
 
