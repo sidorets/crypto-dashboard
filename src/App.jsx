@@ -27,6 +27,7 @@ function App() {
       tg.expand();  // Разворачиваем WebApp на всю высоту
       tg.ready();   // Подтверждаем готовность WebApp
       tg.enableClosingConfirmation(); // Запрещаем случайное закрытие
+      tg.requestFullscreen(); // Запрос полноэкранного режима
     }
   
     // Отключаем свайп вниз для закрытия
