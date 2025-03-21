@@ -24,6 +24,8 @@ function formatMarketCap(number) {
 
 // Telegram Mini Apps SDK
 function App() {
+  const safeAreaRef = useRef(null);
+  
   useEffect(() => {
     if (window.Telegram && window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
