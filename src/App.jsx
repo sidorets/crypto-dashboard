@@ -23,6 +23,7 @@ function formatMarketCap(number) {
 
 // Telegram Mini Apps SDK
 function App() {
+  const [safeArea, setSafeArea] = useState({ top: 0, bottom: 16, left: 16, right: 16 });
 
   useEffect(() => {
     if (window.Telegram && window.Telegram.WebApp) {
@@ -31,6 +32,21 @@ function App() {
       tg.ready();
       tg.requestFullscreen();
       tg.disableVerticalSwipes();
+
+      // 🔥 Если `content_safe_area_changed` работает
+      tg.onEvent("content_safe_area_changed", (safeArea) => {
+        console.log("Safe Area Updated:", safeArea);
+        setSafeArea(safeArea);
+      });
+
+      // 🔥 Если `content_safe_area_changed` не работает, используем `viewportStableHeight`
+      if (tg.viewportStableHeight) {
+        console.log("Using viewportStableHeight:", tg.viewportStableHeight);
+        setSafeArea((prev) => ({
+          ...prev,
+          top: tg.viewportStableHeight * 0.05, // Делаем 5% от высоты
+        }));
+      }
 
     return () => {
       if (window.Telegram && window.Telegram.WebApp) {
@@ -60,7 +76,13 @@ function App() {
 
   // App
   return (
-    <div className="safe-area-container bg-black min-h-screen flex flex-col items-center justify-center gap-[32px] p-[16px] pt-[64px] pb-[24px]">
+    <div className="bg-black min-h-screen flex flex-col items-center justify-center gap-[32px] p-[16px] pt-[64px] pb-[24px]"
+        style={{
+          paddingTop: `${safeArea.top}px`, // ✅ Теперь обновляется напрямую
+          paddingBottom: `${safeArea.bottom}px`,
+          paddingLeft: `${safeArea.left}px`,
+          paddingRight: `${safeArea.right}px`
+        }}>
       <h1 className="text-4xl text-center text-white font-bold">
         Crypto Dashboard
       </h1>
