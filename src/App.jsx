@@ -82,12 +82,12 @@ function App() {
   return (
     <div className="bg-black min-h-screen flex flex-col items-center justify-center gap-[16px] p-[16px] pt-[64px] pb-[24px]"
         style={{
-          paddingTop: `${safeArea.top}px`, // ✅ Теперь обновляется напрямую
+          paddingTop: `${safeArea.top}px`,
           paddingBottom: `${safeArea.bottom}px`,
           paddingLeft: `${safeArea.left}px`,
           paddingRight: `${safeArea.right}px`
         }}>
-      <div className="w-[120px] h-[120px]"> {/* Контейнер для размера */}
+      <div className="w-[120px] h-[120px]">
         <Lottie animationData={bitcoinAnimation} loop={true} />
       </div>
       <h1 className="text-4xl text-center text-white font-bold pb-[12px]">
