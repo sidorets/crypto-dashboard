@@ -29,7 +29,7 @@ function App() {
       const tg = window.Telegram.WebApp;
       tg.expand();
       tg.ready();
-      
+      tg.requestFullscreen();
       tg.disableVerticalSwipes();
     }
   }, []);
@@ -54,7 +54,7 @@ function App() {
 
   // App
   return (
-    <div className="bg-black min-h-screen flex flex-col items-center justify-center gap-[32px] p-[16px] pt-[64px] pb-[24px]">
+    <div className="safe-area-container bg-black min-h-screen flex flex-col items-center justify-center gap-[32px] p-[16px] pt-[64px] pb-[24px]">
       <h1 className="text-4xl text-center text-white font-bold">
         Crypto Dashboard
       </h1>
