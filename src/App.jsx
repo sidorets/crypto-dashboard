@@ -24,8 +24,6 @@ function formatMarketCap(number) {
 
 // Telegram Mini Apps SDK
 function App() {
-  const [safeArea, setSafeArea] = useState({ top: 0, bottom: 16, left: 16, right: 16 });
-
   useEffect(() => {
     if (window.Telegram && window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
@@ -65,7 +63,7 @@ function App() {
 
   // App
   return (
-    <div className="bg-black min-h-screen flex flex-col items-center justify-center gap-[16px] p-[16px] pt-48px] pb-[24px]">
+    <div className="bg-black min-h-screen flex flex-col items-center justify-center gap-[16px] pl-[16px] pr-[16px] pt-[48px] pb-[24px]">
       <div className="w-[120px] h-[120px]">
         <Lottie animationData={bitcoinAnimation} loop={true} />
       </div>
