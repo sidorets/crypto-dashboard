@@ -30,8 +30,15 @@ function App() {
       const tg = window.Telegram.WebApp;
       tg.expand();
       tg.ready();
-      tg.requestFullscreen();
       tg.disableVerticalSwipes();
+      
+      // ✅ Проверяем, действительно ли WebApp запущен в Telegram
+      if (tg.initDataUnsafe && tg.platform) {
+      console.log("Running inside Telegram:", tg.platform);
+      tg.requestFullscreen(); // Включаем fullscreen ТОЛЬКО в Telegram
+      } else {
+      console.log("Running in a regular browser. Skipping fullscreen.");
+      }
 
       // Top Padding
       if (tg.viewportStableHeight) {
