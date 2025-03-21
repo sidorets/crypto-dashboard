@@ -60,13 +60,7 @@ function App() {
 
   // App
   return (
-    <div className="safe-area-container bg-black min-h-screen flex flex-col items-center justify-center gap-[32px] p-[16px] pt-[64px] pb-[24px]"
-        style={{
-          paddingTop: "150px",  // Принудительно 50px вместо Safe Area
-          paddingBottom: "16px",
-          paddingLeft: "16px",
-          paddingRight: "16px"
-        }}>
+    <div className="safe-area-container bg-black min-h-screen flex flex-col items-center justify-center gap-[32px] p-[16px] pt-[64px] pb-[24px]">
       <h1 className="text-4xl text-center text-white font-bold">
         Crypto Dashboard
       </h1>
