@@ -32,12 +32,14 @@ function App() {
       tg.ready();
       tg.disableVerticalSwipes();
       
-      // ✅ Проверяем, действительно ли WebApp запущен в Telegram
-      if (tg.initDataUnsafe && tg.platform) {
-      console.log("Running inside Telegram:", tg.platform);
-      tg.requestFullscreen(); // Включаем fullscreen ТОЛЬКО в Telegram
+      // ✅ Определяем, открыт ли WebApp в Telegram
+      const isTelegram = tg.initDataUnsafe?.query_id !== undefined;
+
+      if (isTelegram) {
+      console.log("Running inside Telegram WebApp");
+      tg.requestFullscreen(); // ✅ Только внутри Telegram
       } else {
-      console.log("Running in a regular browser. Skipping fullscreen.");
+      console.log("Running in a regular browser. Fullscreen is disabled.");
       }
 
       // Top Padding
