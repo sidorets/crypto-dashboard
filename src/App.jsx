@@ -33,18 +33,12 @@ function App() {
       tg.requestFullscreen();
       tg.disableVerticalSwipes();
 
-      // 🔥 Если `content_safe_area_changed` работает
-      tg.onEvent("content_safe_area_changed", (safeArea) => {
-        console.log("Safe Area Updated:", safeArea);
-        setSafeArea(safeArea);
-      });
-
-      // 🔥 Если `content_safe_area_changed` не работает, используем `viewportStableHeight`
+      // Top Padding
       if (tg.viewportStableHeight) {
         console.log("Using viewportStableHeight:", tg.viewportStableHeight);
         setSafeArea((prev) => ({
           ...prev,
-          top: tg.viewportStableHeight * 0.3 // Делаем 5% от высоты
+          top: tg.viewportStableHeight * 0.3 // 30% от высоты
         }));
       }
 
