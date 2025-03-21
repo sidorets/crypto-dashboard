@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Card from "./components/Card";
 import { requestFullscreen } from "@telegram-apps/sdk";
 
+// Currency list
 const allowedCoins = [
   "bitcoin", "toncoin", "polkadot", "cardano", "cat-in-a-dogs-world",
   "dogecoin", "dogs", "hamster-kombat", "notcoin", "tron", "not-pixel", 
@@ -20,6 +21,7 @@ function formatMarketCap(number) {
   return `$${number.toLocaleString()}`;
 }
 
+// Telegram Mini Apps SDK
 function App() {
 
   useEffect(() => {
@@ -27,10 +29,11 @@ function App() {
       const tg = window.Telegram.WebApp;
       tg.expand();
       tg.ready();
+      tg.requestFullscreen();
     }
   }, []);
 
-  const enableFullScreen = async () => {
+  const requestFullScreen = async () => {
     if (requestFullscreen.isAvailable()) {
       await requestFullscreen();
     } else {
@@ -70,9 +73,9 @@ function App() {
           {coins.map((coin) => (
             <Card
               key={coin.id}
-              title={coin.name} // ✅ Название криптовалюты
-              description={`Market Cap: ${formatMarketCap(coin.market_cap)}`} // ✅ Форматируем Market Cap
-              icon={coin.image} // ✅ URL иконки
+              title={coin.name} // Название криптовалюты
+              description={`Market Cap: ${formatMarketCap(coin.market_cap)}`} // Форматирование Market Cap
+              icon={coin.image} // URL иконки
             />
           ))}
         </div>
