@@ -6,6 +6,10 @@
 }
 
 .safe-area-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding-top: var(--tg-content-safe-area-inset-top);
   padding-bottom: var(--tg-content-safe-area-inset-bottom);
   padding-left: var(--tg-content-safe-area-inset-left);
