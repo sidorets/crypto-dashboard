@@ -63,7 +63,7 @@ function App() {
 
   // App
   return (
-    <div className="bg-black min-h-screen flex flex-col items-center justify-center gap-[16px] pl-[16px] pr-[16px] pt-[48px] pb-[24px]">
+    <div className="safe-area-container bg-black min-h-screen flex flex-col items-center justify-center gap-[12px] pl-[16px] pr-[16px] pt-[48px] pb-[24px]">
       <div className="w-[120px] h-[120px]">
         <Lottie animationData={bitcoinAnimation} loop={true} />
       </div>
@@ -74,7 +74,7 @@ function App() {
       {loading ? (
         <p className="text-white">Loading</p>
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[12px] w-full max-w-[1000px]">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[10px] w-full max-w-[1000px]">
           {coins.map((coin) => (
             <Card
               key={coin.id}
