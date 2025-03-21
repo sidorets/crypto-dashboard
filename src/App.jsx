@@ -25,7 +25,7 @@ function formatMarketCap(number) {
 // Telegram Mini Apps SDK
 function App() {
   const safeAreaRef = useRef(null);
-  
+
   useEffect(() => {
     if (window.Telegram && window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
@@ -35,10 +35,12 @@ function App() {
 
       // Создаём элемент tg-content-safe-area вручную
     const safeArea = document.createElement("tg-content-safe-area");
-    safeArea.className = "safe-area-container";
-    if (safeAreaRef.current) {
-      safeAreaRef.current.appendChild(safeArea);
-    }
+  safeArea.className = "safe-area-container";
+  
+  if (!document.querySelector("tg-content-safe-area")) {
+    document.body.appendChild(safeArea);
+  }
+
       
       // Check if Telegram is Open
       const isTelegram = tg.initDataUnsafe?.query_id !== undefined;
