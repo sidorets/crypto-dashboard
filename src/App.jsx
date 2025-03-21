@@ -64,13 +64,13 @@ function App() {
   // App
   return (
     <div className="content-container">
-    <div className="bg-black min-h-screen flex flex-col items-center justify-center gap-[10px] pl-[16px] pr-[16px] pt-[100px] pb-[24px]">
-      <div className="w-[120px] h-[120px]">
-        <Lottie animationData={bitcoinAnimation} loop={true} />
-      </div>
-      <h1 className="text-4xl text-center text-white font-bold pb-[12px]">
-        Crypto Dashboard
-      </h1>
+      <div className="bg-black min-h-screen flex flex-col items-center justify-center gap-[10px] pl-[16px] pr-[16px] pt-[100px] pb-[24px]">
+          <div className="w-[120px] h-[120px]">
+            <Lottie animationData={bitcoinAnimation} loop={true} />
+          </div>
+            <h1 className="text-4xl text-center text-white font-bold pb-[12px]">
+              Crypto Dashboard
+            </h1>
 
       {loading ? (
         <p className="text-white">Loading</p>
@@ -86,7 +86,7 @@ function App() {
           ))}
         </div>
       )}
-    </div>
+      </div>
     </div>
   );
 }
