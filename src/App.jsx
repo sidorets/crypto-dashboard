@@ -32,6 +32,16 @@ function App() {
       tg.requestFullscreen();
       tg.disableVerticalSwipes();
 
+       // 🔥 Устанавливаем начальные safe area insets
+      const safeArea = tg.viewportStableHeight ? {
+      top: 16, bottom: 16, left: 16, right: 16
+      } : { top: 0, bottom: 0, left: 0, right: 0 };
+
+      document.documentElement.style.setProperty("--tg-content-safe-area-inset-top", `${safeArea.top}px`);
+      document.documentElement.style.setProperty("--tg-content-safe-area-inset-bottom", `${safeArea.bottom}px`);
+      document.documentElement.style.setProperty("--tg-content-safe-area-inset-left", `${safeArea.left}px`);
+      document.documentElement.style.setProperty("--tg-content-safe-area-inset-right", `${safeArea.right}px`);
+
       // Safe Area Changed Event
       tg.onEvent("content_safe_area_changed", (safeArea) => {
         document.documentElement.style.setProperty("--tg-content-safe-area-inset-top", `${safeArea.top}px`);
