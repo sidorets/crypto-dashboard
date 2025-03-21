@@ -62,7 +62,7 @@ function App() {
   return (
     <div className="safe-area-container bg-black min-h-screen flex flex-col items-center justify-center gap-[32px] p-[16px] pt-[64px] pb-[24px]"
         style={{
-          paddingTop: "50px",  // Принудительно 50px вместо Safe Area
+          paddingTop: "150px",  // Принудительно 50px вместо Safe Area
           paddingBottom: "16px",
           paddingLeft: "16px",
           paddingRight: "16px"
