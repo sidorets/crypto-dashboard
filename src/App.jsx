@@ -25,12 +25,8 @@ function formatMarketCap(number) {
 // Telegram Mini Apps SDK
 function App() {
   useEffect(() => {
-    const tg = window.Telegram?.WebApp;
-      if (!tg) {
-      console.error("Telegram WebApp SDK не найден!");
-      return;
-      
-
+    if (window.Telegram && window.Telegram.WebApp) {
+      const tg = window.Telegram.WebApp;
       tg.expand();
       tg.ready();
       tg.disableVerticalSwipes();
