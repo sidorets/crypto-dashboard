@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card from "./components/Card";
+import Lottie from "lottie-react";
+import bitcoinAnimation from "./assets/Bitcoin.json";
 
 // Currency list
 const allowedCoins = [
@@ -85,6 +87,9 @@ function App() {
           paddingLeft: `${safeArea.left}px`,
           paddingRight: `${safeArea.right}px`
         }}>
+      <div className="w-[140px] h-[140px]"> {/* Контейнер для размера */}
+        <Lottie animationData={bitcoinAnimation} loop={true} />
+      </div>
       <h1 className="text-4xl text-center text-white font-bold">
         Crypto Dashboard
       </h1>
