@@ -64,7 +64,7 @@ function App() {
   // App
   return (
     <div className="content-container">
-      <div className="bg-black min-h-screen flex flex-col items-center justify-center gap-[10px] pl-[16px] pr-[16px] pb-[24px]">
+      <div className="bg-black min-h-screen flex flex-col items-center justify-center gap-[10px] pl-[16px] pr-[16px] pt-[110px] pb-[24px]">
           <div className="w-[120px] h-[120px]">
             <Lottie animationData={bitcoinAnimation} loop={true} />
           </div>
