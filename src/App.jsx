@@ -34,14 +34,6 @@ function App() {
     }
   }, []);
 
-  const requestFullScreen = async () => {
-    if (requestFullscreen.isAvailable()) {
-      await requestFullscreen();
-    } else {
-      alert("Fullscreen не поддерживается в этом WebApp.");
-    }
-  };
-
   // Coingecko API
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(true);
