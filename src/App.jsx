@@ -29,8 +29,8 @@ function App() {
       const tg = window.Telegram.WebApp;
       tg.expand();
       tg.ready();
-      tg.requestFullscreen();
       tg.viewportStableHeight();
+      tg.isClosingConfirmationEnabled();
     }
   }, []);
 
