@@ -28,6 +28,12 @@ function App() {
       tg.ready();   // Подтверждаем готовность WebApp
       tg.enableClosingConfirmation(); // Запрещаем случайное закрытие
       tg.requestFullscreen(); // Запрос полноэкранного режима
+
+      // Устанавливаем динамический отступ сверху
+      document.documentElement.style.setProperty(
+      "--tg-top-padding",
+      `${tg.viewportStableHeight ? tg.viewportStableHeight * 0.05 : 24}px`
+    );
     }
   
     // Отключаем свайп вниз для закрытия
