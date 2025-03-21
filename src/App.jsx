@@ -19,20 +19,6 @@ function formatMarketCap(number) {
   return `$${number.toLocaleString()}`;
 }
 
- // Fullscreen method
- const enterFullScreen = () => {
-  const elem = document.documentElement; // Get root element
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.mozRequestFullScreen) { // Firefox
-    elem.mozRequestFullScreen();
-  } else if (elem.webkitRequestFullscreen) { // Chrome, Safari
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { // IE/Edge
-    elem.msRequestFullscreen();
-  }
-};
-
 function App() {
 
   useEffect(() => {
@@ -82,6 +68,21 @@ function App() {
         setLoading(false);
       });
   }, []);
+
+  // ✅ Fullscreen method
+  const toggleFullScreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen?.() ||
+      document.documentElement.mozRequestFullScreen?.() || 
+      document.documentElement.webkitRequestFullscreen?.() || 
+      document.documentElement.msRequestFullscreen?.();
+    } else {
+      document.exitFullscreen?.() || 
+      document.mozCancelFullScreen?.() || 
+      document.webkitExitFullscreen?.() || 
+      document.msExitFullscreen?.();
+    }
+  };
 
   return (
     <div className="bg-black min-h-screen flex flex-col items-center justify-center gap-[32px] p-[16px] pt-[64px] pb-[24px]">
