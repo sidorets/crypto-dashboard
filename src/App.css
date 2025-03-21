@@ -1,0 +1,13 @@
+:root {
+    --tg-content-safe-area-inset-top: env(--tg-content-safe-area-inset-top, 16px);
+    --tg-content-safe-area-inset-bottom: env(--tg-content-safe-area-inset-bottom, 16px);
+    --tg-content-safe-area-inset-left: env(--tg-content-safe-area-inset-left, 16px);
+    --tg-content-safe-area-inset-right: env(--tg-content-safe-area-inset-right, 16px);
+  }
+  
+  .safe-area-container {
+    padding-top: var(--tg-content-safe-area-inset-top);
+    padding-bottom: var(--tg-content-safe-area-inset-bottom);
+    padding-left: var(--tg-content-safe-area-inset-left);
+    padding-right: var(--tg-content-safe-area-inset-right);
+  }
