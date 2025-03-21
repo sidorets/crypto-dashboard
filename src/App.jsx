@@ -63,7 +63,14 @@ function App() {
 
   // App
   return (
-    <div className="safe-area-container bg-black min-h-screen flex flex-col items-center justify-center gap-[12px] pl-[16px] pr-[16px] pt-[48px] pb-[24px]">
+    <div className="safe-area-container bg-black min-h-screen flex flex-col items-center justify-center gap-[12px] pl-[16px] pr-[16px] pt-[48px] pb-[24px]"
+    style={{
+      paddingTop: `${safeArea.top}px`,
+      paddingBottom: `${safeArea.bottom}px`,
+      paddingLeft: `${safeArea.left}px`,
+      paddingRight: `${safeArea.right}px`
+    }}
+    >
       <div className="w-[120px] h-[120px]">
         <Lottie animationData={bitcoinAnimation} loop={true} />
       </div>
