@@ -44,7 +44,7 @@ function App() {
         console.log("Using viewportStableHeight:", tg.viewportStableHeight);
         setSafeArea((prev) => ({
           ...prev,
-          top: tg.viewportStableHeight * 0.4 // Делаем 5% от высоты
+          top: tg.viewportStableHeight * 0.3 // Делаем 5% от высоты
         }));
       }
 
