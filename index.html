@@ -12,7 +12,7 @@
 <body class="bg-black text-white min-h-screen flex items-center justify-center">
   <div class="bg-gray-800 p-6 rounded-xl text-center w-[90%] max-w-md">
     <h1 id="greeting" class="text-2xl font-bold mb-4">Loading...</h1>
-    <button id="mainButton" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
+    <button id="primaryButton" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
         Нажми меня
     </button>
     <button id="secondaryButton" class="bg-blue-200 text-blue-800 px-4 py-2 rounded-lg">Вторая кнопка</button>
@@ -23,6 +23,7 @@
 
     // Разворачиваем приложение на весь экран
     tg.expand();
+    tg.fullscreen();
 
     // Получаем имя пользователя (если есть)
     const user = tg.initDataUnsafe?.user;
@@ -35,7 +36,7 @@
     }
 
     // Работа с кнопкой
-    const mainButton = document.getElementById("mainBtn");
+    const primaryButton = document.getElementById("primaryButton");
     mainButton.addEventListener("click", () => {
       tg.MainButton.text = "Отправить данные";
       tg.MainButton.show();
