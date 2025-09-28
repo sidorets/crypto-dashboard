@@ -10,11 +10,12 @@
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body class="bg-black text-white min-h-screen flex items-center justify-center">
-  <div class="bg-gray-900 p-6 rounded-xl text-center w-[90%] max-w-md shadow-lg">
+  <div class="bg-gray-800 p-6 rounded-xl text-center w-[90%] max-w-md">
     <h1 id="greeting" class="text-2xl font-bold mb-4">Loading...</h1>
-    <button id="mainBtn" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
-      Нажми меня
+    <button id="mainButton" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
+        Нажми меня
     </button>
+    <button id="secondaryButton" class="bg-blue-200 text-blue-800 px-4 py-2 rounded-lg">Вторая кнопка</button>
   </div>
 
   <script>
@@ -23,11 +24,7 @@
     // Разворачиваем приложение на весь экран
     tg.expand();
 
-    // Принудительно ставим тёмную тему
-    document.body.style.backgroundColor = "#000000";
-    document.body.style.color = "#ffffff";
-
-    // Получаем имя пользователя
+    // Получаем имя пользователя (если есть)
     const user = tg.initDataUnsafe?.user;
     const greeting = document.getElementById("greeting");
 
@@ -38,13 +35,10 @@
     }
 
     // Работа с кнопкой
-    const mainBtn = document.getElementById("mainBtn");
-    mainBtn.addEventListener("click", () => {
+    const mainButton = document.getElementById("mainBtn");
+    mainButton.addEventListener("click", () => {
       tg.MainButton.text = "Отправить данные";
-      tg.MainButton.color = "#1E90FF"; // цвет главной кнопки Telegram
-      tg.MainButton.textColor = "#ffffff"; // текст кнопки белый
       tg.MainButton.show();
-
       tg.MainButton.onClick(() => {
         tg.sendData("Пользователь нажал кнопку!");
         tg.close(); // закрыть мини-апп
